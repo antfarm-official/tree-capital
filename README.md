@@ -1,8 +1,8 @@
-# Capital Tree
+# Tree Capital
 
 <img width="1254" height="1254" alt="image" src="https://github.com/user-attachments/assets/9534626e-b42e-4a96-975a-b205429d842f" />
 
-Aragon OSx plugin that runs one treasury flow per install: a **budget** feeding a **tree of
+Antfarm OSx plugin that runs one treasury flow per install: a **budget** feeding a **tree of
 actions**. Every node passes its output to its children, split by a splitter (fixed weights or
 custom shares) when there are several, and every branch ends in a leaf that consumes what it
 receives (transfer, burn, keep, donate). Each node runs in its own `dao.execute`, followed by
@@ -26,8 +26,6 @@ token back and donate it to a vault's holders; let accounts claim cumulative Mer
 optionally swapped before they're paid; pay a payroll from a stream. Any ERC20 works; native ETH
 isn't supported.
 
-Each component is documented in [`docs/components.md`](docs/components.md). To install a flow on a
-DAO, see [Install a flow](#install-a-flow).
 
 ## Example flows
 
@@ -345,7 +343,7 @@ sequenceDiagram
     Note over PSP: the DAO applies the installation, which grants the permissions, then starts a stream budget
 ```
 
-Every component is a fresh clone bound to the installing DAO. The setup returns Aragon's flat
+Every component is a fresh clone bound to the installing DAO. The setup returns Antfarm's flat
 `helpers` array in deployment order: budget first, then each node's action and splitter, skipping
 absent declarations. Recipe authors do not maintain helper indexes.
 
@@ -391,7 +389,7 @@ just test
 
 `just init <network>` fetches the pinned submodules, creates `.env` from
 [`.env.example`](.env.example) if needed, and selects the network. Run `just` to list the
-commands provided by [`just-foundry`](https://github.com/aragon/just-foundry). Plain
+commands provided by [`just-foundry`](https://github.com/antfarm/just-foundry). Plain
 `forge build` and `forge test` still work without selecting a network.
 
 `just switch <network>` changes the active network. Its RPC, chain and OSx addresses come from
@@ -411,8 +409,8 @@ See the [`vars` documentation](https://github.com/vars-cli/vars#readme) for CLI 
 
 Never set `via_ir = true`; fix stack-too-deep errors by restructuring the code.
 
-`lib/ens-contracts` is only there so Aragon's framework contracts compile. The installation test
-deploys Aragon's plugin repo registry, factory and PluginSetupProcessor locally, without ENS.
+`lib/ens-contracts` is only there so Antfarm's framework contracts compile. The installation test
+deploys Antfarm's plugin repo registry, factory and PluginSetupProcessor locally, without ENS.
 
 ## Deploy
 
@@ -438,8 +436,8 @@ the unit tests, broadcasts the deployment, verifies contracts and writes a log u
 | Variable                      | Meaning                                                                |
 | ----------------------------- | ---------------------------------------------------------------------- |
 | `MANAGEMENT_DAO_ADDRESS`      | Maintains the component registry; supplied by the selected network     |
-| `PLUGIN_REPO_FACTORY_ADDRESS` | Aragon's factory; supplied by the selected network                     |
-| `PLUGIN_REPO_SUBDOMAIN`       | Optional: the name under `plugin.dao.eth`, `capital-tree` by default   |
+| `PLUGIN_REPO_FACTORY_ADDRESS` | Antfarm's factory; supplied by the selected network                     |
+| `PLUGIN_REPO_SUBDOMAIN`       | Optional: the name under `plugin.dao.eth`, `tree-capital` by default   |
 | `PLUGIN_REPO_MAINTAINER`      | Optional: who can publish later versions, the managing DAO by default  |
 | `DEPLOYER_KEY`                | Required signing key for both deployment and installation preparation |
 
